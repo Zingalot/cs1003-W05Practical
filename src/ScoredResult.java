@@ -29,6 +29,7 @@ public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
      * Return the value of the score stored in this object
      *
      * @return The score
+     *
      */
     public double getScore() {
         return score;
