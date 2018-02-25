@@ -1,7 +1,7 @@
 
-public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
+public class ScoredResult<String> implements Comparable<ScoredResult<String>> {
 
-    private T result;
+    private String result;
     private double score;
 
     /**
@@ -11,7 +11,7 @@ public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
      * @param result Some data, typically the result of a similarity search
      * @param score The score associated with this result
      */
-    public ScoredResult(T result, double score) {
+    public ScoredResult(String result, double score) {
         this.result = result;
         this.score = score;
     }
@@ -21,7 +21,7 @@ public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
      *
      * @return The result
      */
-    public T getResult() {
+    public String getResult() {
         return result;
     }
 
@@ -29,7 +29,6 @@ public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
      * Return the value of the score stored in this object
      *
      * @return The score
-     *
      */
     public double getScore() {
         return score;
@@ -43,7 +42,7 @@ public class ScoredResult<T> implements Comparable<ScoredResult<T>> {
      * @return The result of the comparison
      */
     @Override
-    public int compareTo(ScoredResult<T> other) {
+    public int compareTo(ScoredResult<String> other) {
         return Double.compare(other.score, this.score);
     }
 

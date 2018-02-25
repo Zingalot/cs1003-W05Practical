@@ -4,7 +4,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.io.File;
 
 public class SentenceReader {
 
@@ -23,7 +25,38 @@ public class SentenceReader {
      * @throws IOException May throw an IOException while reading the file
      */
     public List<String> readAllSentences(String filepath) throws IOException {
-        return null;
+
+        int numberOfLines = 0;
+        List<String> contents = new ArrayList<>();
+        try {
+            //Creating the scanner to read data from the text file
+            Scanner scanner = new Scanner(new File(filepath));
+
+            //Delimits data from the scanner with empty lines and a full stop to ensure that whole sentences are read
+            scanner.useDelimiter("\\n\\s|\\.");
+
+            //While the scanner still has data stored
+            while (scanner.hasNext()) {
+                String line = scanner.next();
+                /*if (line.length() == 0) {
+                    continue; //Exit this iteration if line starts with space or /
+                }*/
+                    //Add a sanitised sentence to the arraylist
+                    contents.add(sanitiseSentence(line));
+
+
+
+
+                //System.out.println(line);
+            }
+
+        } catch (IOException e) { //Catches the case where the input file cannot be accessed
+            System.out.println("Input file not found, check file name and location");
+
+        } catch (NumberFormatException f) { //Catches some of the cases where the file does not fit the expected format
+            System.out.println("Incorrect Input Format");
+        }
+        return contents;
     }
 
     /**
