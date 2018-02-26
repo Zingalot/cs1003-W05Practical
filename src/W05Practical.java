@@ -12,7 +12,7 @@ public class W05Practical {
         List<String> sentences = new ArrayList<>();
         List<ScoredResult> results = new ArrayList<>();
         List<String[]> bigramTest = new ArrayList<>();
-        DecimalFormat outputFormat = new DecimalFormat("#.####");
+        DecimalFormat outputFormat = new DecimalFormat("0.0000");
 
         try {
 
@@ -33,7 +33,7 @@ public class W05Practical {
                 results.add(new ScoredResult(sentences.get(j),bigram.createScore(bigramTest.get(j),queryBigram)));
             }
             Collections.sort(results);
-            for(int k = 0; k < results.size(); k++){
+            for(int k = 0; k < 50; k++){
                 System.out.println(outputFormat.format(results.get(k).getScore()) + " " + results.get(k).getResult());
             }
 
@@ -48,6 +48,29 @@ public class W05Practical {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Usage: java W05Practical <input_file> <query>");
         }
+        /*//Test for bigram creator
+        String[] testBigram = bigram.createBigram(String.valueOf(results.get(1).getResult()));
+        for(int p = 0; p < testBigram.length-1; p++){
+            System.out.print(testBigram[p] + "||");
+        }
+        System.out.print(" " + (testBigram.length-1));
+        System.out.println();
+        String[] testBigram2 = bigram.createBigram("happy alice");
+        for(int p = 0; p < testBigram2.length-1; p++){
+            System.out.print(testBigram2[p] + "||");
+        }
+        System.out.print(" " + (testBigram2.length-1));
+        System.out.println();
+        int intersection = 0;
+        for(int i = 0; i < testBigram.length-1; i++ ){
+            for(int j = 0; j < testBigram2.length-1; j++){
+                if(testBigram[i].equals(testBigram2[j])){
+                    intersection++;
+                }
+            }
+        }
+        System.out.println(intersection);*/
+
 
     }
 }

@@ -33,14 +33,14 @@ public class SentenceReader {
             Scanner scanner = new Scanner(new File(filepath));
 
             //Delimits data from the scanner with empty lines and a full stop to ensure that whole sentences are read
-            scanner.useDelimiter("\\n\\s|\\.");
-
+            scanner.useDelimiter("\\.");
+            //scanner.useDelimiter("\\n\\s|\\.\\s");
             //While the scanner still has data stored
             while (scanner.hasNext()) {
                 String line = scanner.next();
-                /*if (line.length() == 0) {
-                    continue; //Exit this iteration if line starts with space or /
-                }*/
+                if (line.isEmpty() || line.equals("\r") || line.equals("\n")) {//Ensuring that an empty line is not included
+                    continue;
+                }
                     //Add a sanitised sentence to the arraylist
                     contents.add(sanitiseSentence(line));
 
