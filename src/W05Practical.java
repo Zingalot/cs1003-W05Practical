@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,8 +12,10 @@ public class W05Practical {
         SentenceReader reader = new SentenceReader();
         List<String> sentences = new ArrayList<>();
         List<ScoredResult> results = new ArrayList<>();
-        List<String[]> bigramTest = new ArrayList<>();
+        List<String[]> bigramList = new ArrayList<>();
         DecimalFormat outputFormat = new DecimalFormat("0.0000");
+        outputFormat.setRoundingMode(RoundingMode.HALF_UP);
+        final int numberOfResults = 50;
 
         try {
 
@@ -21,33 +24,28 @@ public class W05Practical {
             String query = reader.sanitiseSentence(args[1]);
             String[] queryBigram = bigram.createBigram(query);
 
-
+            //Creating a list of sentences and its corresponding list of bigram arrays
             sentences = reader.readAllSentences(filepath);
-            for(int i = 0; i<sentences.size(); i++){
-                bigramTest.add(bigram.createBigram(sentences.get(i)));
+            bigramList = bigram.createBigramList(sentences);
+
+            //Creates ScoredResults objects and adds them to the results list
+            for(int j = 0; j < bigramList.size(); j++){
+                results.add(new ScoredResult(sentences.get(j),bigram.createScore(bigramList.get(j),queryBigram)));
             }
 
-            for(int j = 0; j < bigramTest.size(); j++){
-                //System.out.println(sentences.get(j));
-                //System.out.println(bigram.createScore(bigramTest.get(j), queryBigram));
-                results.add(new ScoredResult(sentences.get(j),bigram.createScore(bigramTest.get(j),queryBigram)));
-            }
+            //Sorts and prints the results
             Collections.sort(results);
-            for(int k = 0; k < 50; k++){
+            for(int k = 0; k < numberOfResults; k++){
                 System.out.println(outputFormat.format(results.get(k).getScore()) + " " + results.get(k).getResult());
             }
-
-
-
-            //System.out.println(bigramTest.get(0)[0]);
-            //calculateScores();
-
-
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Usage: java W05Practical <input_file> <query>");
         }
+
+
+
         /*//Test for bigram creator
         String[] testBigram = bigram.createBigram(String.valueOf(results.get(1).getResult()));
         for(int p = 0; p < testBigram.length-1; p++){

@@ -26,7 +26,6 @@ public class SentenceReader {
      */
     public List<String> readAllSentences(String filepath) throws IOException {
 
-        int numberOfLines = 0;
         List<String> contents = new ArrayList<>();
         try {
             //Creating the scanner to read data from the text file
@@ -34,7 +33,8 @@ public class SentenceReader {
 
             //Delimits data from the scanner with empty lines and a full stop to ensure that whole sentences are read
             scanner.useDelimiter("\\.");
-            //scanner.useDelimiter("\\n\\s|\\.\\s");
+
+
             //While the scanner still has data stored
             while (scanner.hasNext()) {
                 String line = scanner.next();
@@ -49,6 +49,7 @@ public class SentenceReader {
 
                 //System.out.println(line);
             }
+            scanner.close();
 
         } catch (IOException e) { //Catches the case where the input file cannot be accessed
             System.out.println("Input file not found, check file name and location");

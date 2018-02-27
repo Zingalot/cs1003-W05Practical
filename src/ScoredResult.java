@@ -1,3 +1,4 @@
+import java.util.List;
 
 public class ScoredResult<String> implements Comparable<ScoredResult<String>> {
 
@@ -15,6 +16,7 @@ public class ScoredResult<String> implements Comparable<ScoredResult<String>> {
         this.result = result;
         this.score = score;
     }
+
 
     /**
      * Return the result stored in this object

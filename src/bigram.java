@@ -1,7 +1,5 @@
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class bigram {
 
@@ -15,9 +13,9 @@ public class bigram {
             //System.out.println(input.substring(i, i+2));
         }
         Set<String> uniqueForce = new LinkedHashSet<>(Arrays.asList(bigrams));
-        String[] forReturn = uniqueForce.toArray(new String[0]);
+        String[] bigramArray = uniqueForce.toArray(new String[0]);
 
-        return forReturn;
+        return bigramArray;
     }
 
     public static double createScore(String[] inputBigram, String[] queryBigram){
@@ -34,6 +32,14 @@ public class bigram {
         double jaccard = intersection/union;
         //System.out.println(intersection);
         return jaccard;
+    }
+
+    public static List<String[]> createBigramList(List<String> sentences){
+        List<String[]> bigramList = new ArrayList<>();
+        for(int i = 0; i<sentences.size(); i++){
+            bigramList.add(bigram.createBigram(sentences.get(i)));
+        }
+        return bigramList;
     }
 
 
