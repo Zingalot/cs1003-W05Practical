@@ -16,6 +16,7 @@ public class W05Practical {
         DecimalFormat outputFormat = new DecimalFormat("0.0000");
         outputFormat.setRoundingMode(RoundingMode.HALF_UP);
         final int numberOfResults = 50;
+        String finalOutput = "";
 
         try {
 
@@ -35,8 +36,12 @@ public class W05Practical {
 
             //Sorts and prints the results
             Collections.sort(results);
-            for(int k = 0; k < numberOfResults; k++){
-                System.out.println(outputFormat.format(results.get(k).getScore()) + " " + results.get(k).getResult());
+            try {
+                for (int k = 0; k < numberOfResults; k++) {
+                    System.out.println(outputFormat.format(results.get(k).getScore()) + " " + results.get(k).getResult());
+                }
+            } catch (IndexOutOfBoundsException e){
+                System.out.println("No results found");
             }
 
 

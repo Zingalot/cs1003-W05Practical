@@ -52,7 +52,7 @@ public class SentenceReader {
             scanner.close();
 
         } catch (IOException e) { //Catches the case where the input file cannot be accessed
-            System.out.println("Input file not found, check file name and location");
+            System.out.println("Input file not found, check file name, location, and permissions");
 
         } catch (NumberFormatException f) { //Catches some of the cases where the file does not fit the expected format
             System.out.println("Incorrect Input Format");

@@ -23,7 +23,7 @@ public class bigram {
         double intersection = 0;
         for(int i = 0; i < inputBigram.length-1; i++ ){
             for(int j = 0; j < queryBigram.length-1; j++){
-                if(inputBigram[i].equals(queryBigram[j])){
+                    if(inputBigram[i].equals(queryBigram[j])){
                     intersection++;
                 }
             }
