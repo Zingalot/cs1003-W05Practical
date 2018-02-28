@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +15,6 @@ public class W05Practical {
         DecimalFormat outputFormat = new DecimalFormat("0.0000");
         outputFormat.setRoundingMode(RoundingMode.HALF_UP);
         final int numberOfResults = 50;
-        String finalOutput = "";
 
         try {
 
